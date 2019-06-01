@@ -190,6 +190,7 @@
     <string name="new_comment_channel_name">New Comment</string>
 
     <string name="facebook_app_id">849234638764961</string>
+    <string name="title_activity_chat_main">ChatMainActivity</string>
 
 
 </resources>
