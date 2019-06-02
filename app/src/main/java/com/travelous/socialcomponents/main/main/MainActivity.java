@@ -16,6 +16,7 @@
 
 package com.travelous.socialcomponents.main.main;
 
+
 import android.annotation.SuppressLint;
 import android.app.ActivityOptions;
 import android.content.Intent;
@@ -40,7 +41,9 @@ import android.widget.TextView;
 import com.travelous.socialcomponents.R;
 import com.travelous.socialcomponents.adapters.PostsAdapter;
 import com.travelous.socialcomponents.main.base.BaseActivity;
+import com.travelous.socialcomponents.main.chat.ChatMainActivity;
 import com.travelous.socialcomponents.main.followPosts.FollowingPostsActivity;
+import com.travelous.socialcomponents.main.ibm.TranslateMainActivity;
 import com.travelous.socialcomponents.main.post.createPost.CreatePostActivity;
 import com.travelous.socialcomponents.main.postDetails.PostDetailsActivity;
 import com.travelous.socialcomponents.main.profile.ProfileActivity;
@@ -148,7 +151,13 @@ public class MainActivity extends BaseActivity<MainView, MainPresenter> implemen
     private void initFloatingActionButton() {
         floatingActionButton = findViewById(R.id.addNewPostFab);
         if (floatingActionButton != null) {
-            floatingActionButton.setOnClickListener(v -> presenter.onCreatePostClickAction(floatingActionButton));
+//            floatingActionButton.setOnClickListener(v -> presenter.onCreatePostClickAction(floatingActionButton));
+            floatingActionButton.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View v) {
+                    Intent intent = new Intent(MainActivity.this, ChatMainActivity.class);
+                    startActivity(intent);
+                }
+            });
         }
     }
 

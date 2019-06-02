@@ -28,12 +28,13 @@ android {
 
     defaultConfig {
         applicationId "com.travelous.socialcomponents"
-        minSdkVersion 17
+        minSdkVersion 19
         targetSdkVersion 28
         versionCode 29
         versionName "2.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
+        multiDexEnabled true
     }
 
     buildTypes {
@@ -46,6 +47,11 @@ android {
         targetCompatibility 1.8
         sourceCompatibility 1.8
     }
+
+    lintOptions {
+        abortOnError false
+    }
+
 }
 
 dependencies {
@@ -68,6 +74,8 @@ dependencies {
     implementation 'com.google.firebase:firebase-messaging:17.3.4'
     implementation 'com.google.firebase:firebase-auth:16.0.5'
     implementation 'com.firebaseui:firebase-ui-storage:4.1.0'
+    implementation 'com.firebaseui:firebase-ui:3.2.2'
+    //implementation 'com.firebaseui:firebase-ui:1.0.0'
 //    implementation 'com.google.firebase:firebase-core:16.0.9'
     // MVP
     implementation 'com.hannesdorfmann.mosby3:mvp:3.1.0' // Plain MVP
@@ -88,3 +96,4 @@ dependencies {
 }
 
 apply plugin: 'com.google.gms.google-services'
+
