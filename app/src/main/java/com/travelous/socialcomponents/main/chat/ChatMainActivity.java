@@ -1,5 +1,6 @@
 package com.travelous.socialcomponents.main.chat;
 
+import android.content.Intent;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -12,6 +13,7 @@ import android.widget.TextView;
 import com.firebase.ui.database.FirebaseListAdapter;
 import com.firebase.ui.database.FirebaseListOptions;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.travelous.socialcomponents.R;
@@ -40,15 +42,23 @@ public class ChatMainActivity extends AppCompatActivity {
                         .getReference()
                         .push()
                         .setValue(new ChatMessage(input.getText().toString(),
-                                FirebaseAuth.getInstance()
-                                        .getCurrentUser()
-                                        .getDisplayName())
+                                "me")
                         );
 
                 // Clear the input
                 input.setText("");
             }
         });
+
+        displayChatMessage();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        displayChatMessage();
+    }
+
+    public void displayChatMessage() {
         ListView listOfMessages = (ListView)findViewById(R.id.list_of_messages);
 
         //;
