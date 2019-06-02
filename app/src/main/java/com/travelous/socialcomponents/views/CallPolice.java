@@ -41,7 +41,7 @@ public class CallPolice extends AppCompatActivity {
 //                Intent callIntent = new Intent(Intent.ACTION_CALL);
 //                callIntent.setData(Uri.parse("tel:01030974325"));
 //                startActivity(callIntent);
-                dialContactPhone("01030974325");
+                dialContactPhone("112");
 
             }
         });
