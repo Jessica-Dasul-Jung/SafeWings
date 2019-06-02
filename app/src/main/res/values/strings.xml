@@ -181,6 +181,8 @@
     <string name="empty_posts_search_message">No posts found</string>
     <string name="empty_user_search_message">No users found</string>
 
+    <string name="call_menu_item">Call</string>
+
 
     <!--Firebase errors-->
     <string name="permission_denied_error">Please check your rules to access the Firebase Realtime Database</string>
@@ -189,7 +191,7 @@
     <string name="new_like_channel_name">New Like</string>
     <string name="new_comment_channel_name">New Comment</string>
 
-    <string name="facebook_app_id">849234638764961</string>
+    <string name="facebook_application_id">849234638764961</string>
     <string name="title_activity_chat_main">ChatMainActivity</string>
 
 

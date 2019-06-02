@@ -8,10 +8,14 @@
     <uses-permission android:name="android.permission.READ_INTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <!--<uses-permission android:name="android.permission.READ_LOGS" />-->
+    <!-- <uses-permission android:name="android.permission.READ_LOGS" /> -->
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <!--<uses-permission android:name="android.permission.READ_PHONE_STATE" />-->
+
+
 
     <application
         android:name=".Application"
@@ -22,7 +26,7 @@
         android:theme="@style/AppTheme">
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"
-            android:value="@string/facebook_app_id" />
+            android:value="@string/facebook_application_id" />
 
         <activity
             android:name=".main.main.MainActivity"
@@ -109,7 +113,9 @@
             </intent-filter>
         </service>
 
-        <activity android:name=".main.post.createPost.MyLocation"></activity>
+        <activity android:name=".main.post.createPost.MyLocation" />
+        <activity android:name=".CallActivity" />
+        <activity android:name=".views.CallPolice"></activity>
     </application>
 
 </manifest>

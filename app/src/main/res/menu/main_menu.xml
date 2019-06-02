@@ -23,5 +23,12 @@
         android:title="@string/search_menu_item"
         app:showAsAction="ifRoom" />
 
+    <item
+        android:id="@+id/call"
+        android:icon="@drawable/ic_call"
+        android:orderInCategory="3"
+        android:title="@string/call_menu_item"
+        app:showAsAction="ifRoom" />
+
 </menu>
 

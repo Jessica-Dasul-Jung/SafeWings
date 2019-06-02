@@ -38,6 +38,7 @@ import android.view.animation.Animation;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.travelous.socialcomponents.CallActivity;
 import com.travelous.socialcomponents.R;
 import com.travelous.socialcomponents.adapters.PostsAdapter;
 import com.travelous.socialcomponents.main.base.BaseActivity;
@@ -151,13 +152,13 @@ public class MainActivity extends BaseActivity<MainView, MainPresenter> implemen
     private void initFloatingActionButton() {
         floatingActionButton = findViewById(R.id.addNewPostFab);
         if (floatingActionButton != null) {
-//            floatingActionButton.setOnClickListener(v -> presenter.onCreatePostClickAction(floatingActionButton));
-            floatingActionButton.setOnClickListener(new View.OnClickListener() {
-                public void onClick(View v) {
-                    Intent intent = new Intent(MainActivity.this, ChatMainActivity.class);
-                    startActivity(intent);
-                }
-            });
+            floatingActionButton.setOnClickListener(v -> presenter.onCreatePostClickAction(floatingActionButton));
+//            floatingActionButton.setOnClickListener(new View.OnClickListener() {
+//                public void onClick(View v) {
+//                    Intent intent = new Intent(MainActivity.this, ChatMainActivity.class);
+//                    startActivity(intent);
+//                }
+//            });
         }
     }
 
@@ -310,6 +311,12 @@ public class MainActivity extends BaseActivity<MainView, MainPresenter> implemen
                 Intent searchIntent = new Intent(this, SearchActivity.class);
                 startActivity(searchIntent);
                 return true;
+
+            case R.id.call:
+                Intent callIntent = new Intent(this, CallActivity.class);
+                startActivity(callIntent);
+                return true;
+
             default:
                 return super.onOptionsItemSelected(item);
         }
