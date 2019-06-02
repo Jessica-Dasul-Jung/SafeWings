@@ -22,6 +22,7 @@ import android.annotation.TargetApi;
 import android.app.ActivityOptions;
 import android.content.Intent;
 import android.graphics.Rect;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -49,6 +50,11 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.ibm.watson.developer_cloud.language_translator.v3.LanguageTranslator;
+import com.ibm.watson.developer_cloud.language_translator.v3.model.TranslateOptions;
+import com.ibm.watson.developer_cloud.language_translator.v3.model.TranslationResult;
+import com.ibm.watson.developer_cloud.language_translator.v3.util.Language;
+import com.ibm.watson.developer_cloud.service.security.IamOptions;
 import com.travelous.socialcomponents.R;
 import com.travelous.socialcomponents.adapters.CommentsAdapter;
 import com.travelous.socialcomponents.controllers.LikeController;
@@ -56,6 +62,7 @@ import com.travelous.socialcomponents.dialogs.EditCommentDialog;
 import com.travelous.socialcomponents.enums.PostStatus;
 import com.travelous.socialcomponents.listeners.CustomTransitionListener;
 import com.travelous.socialcomponents.main.base.BaseActivity;
+import com.travelous.socialcomponents.main.ibm.TranslateMainActivity;
 import com.travelous.socialcomponents.main.imageDetail.ImageDetailActivity;
 import com.travelous.socialcomponents.main.post.editPost.EditPostActivity;
 import com.travelous.socialcomponents.main.profile.ProfileActivity;
@@ -113,6 +120,10 @@ public class PostDetailsActivity extends BaseActivity<PostDetailsView, PostDetai
     private boolean isEnterTransitionFinished = false;
     private Button sendButton;
 
+    private Button translateBtn;
+    private LanguageTranslator translationService;
+    private String selectedTargetLanguage = Language.KOREAN;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -148,6 +159,14 @@ public class PostDetailsActivity extends BaseActivity<PostDetailsView, PostDetai
         warningCommentsTextView = findViewById(R.id.warningCommentsTextView);
         sendButton = findViewById(R.id.sendButton);
 
+        translationService = initLanguageTranslatorService();
+        translateBtn = (Button) findViewById(R.id.translateBtn);
+        translateBtn.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                new TranslationTask().execute(descriptionEditText.getText().toString());
+            }
+        });
+
         if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP && isAuthorAnimationRequired) {
             authorImageView.setScaleX(0);
             authorImageView.setScaleY(0);
@@ -168,6 +187,7 @@ public class PostDetailsActivity extends BaseActivity<PostDetailsView, PostDetai
                 }
             });
         }
+
 
         initRecyclerView();
         initListeners();
@@ -235,7 +255,6 @@ public class PostDetailsActivity extends BaseActivity<PostDetailsView, PostDetai
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                 sendButton.setEnabled(charSequence.toString().trim().length() > 0);
             }
-
             @Override
             public void afterTextChanged(Editable editable) {
 
@@ -592,4 +611,40 @@ public class PostDetailsActivity extends BaseActivity<PostDetailsView, PostDetai
 
         return super.onOptionsItemSelected(item);
     }
+
+    private class TranslationTask extends AsyncTask<String, Void, String> {
+
+        @Override
+        protected String doInBackground(String... params) {
+            TranslateOptions translateOptions = new TranslateOptions.Builder()
+                    .addText(params[0])
+                    .source(Language.ENGLISH)
+                    .target(selectedTargetLanguage)
+                    .build();
+            TranslationResult result = translationService.translate(translateOptions).execute();
+            String firstTranslation = result.getTranslations().get(0).getTranslationOutput();
+            showTranslation(firstTranslation);
+            return "Did translate";
+        }
+    }
+
+    private LanguageTranslator initLanguageTranslatorService() {
+        IamOptions options = new IamOptions.Builder()
+                .apiKey(getString(R.string.language_translator_apikey))
+                .build();
+        LanguageTranslator service = new LanguageTranslator("2018-05-01", options);
+        service.setEndPoint(getString(R.string.language_translator_url));
+        return service;
+    }
+
+
+    private void showTranslation(final String translation) {
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                descriptionEditText.setText(translation);
+            }
+        });
+    }
+
 }

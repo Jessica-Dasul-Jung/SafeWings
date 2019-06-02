@@ -96,24 +96,46 @@
                 android:layout_marginLeft="@dimen/large_intrinsic_padding"
                 android:layout_marginRight="@dimen/large_intrinsic_padding" />
 
-            <TextView
-                android:id="@+id/descriptionEditText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/countersContainer"
-                android:layout_marginBottom="@dimen/large_intrinsic_padding"
-                android:paddingLeft="@dimen/large_intrinsic_padding"
-                android:paddingRight="@dimen/large_intrinsic_padding"
-                android:autoLink="all"
-                android:textAppearance="@style/TextAppearance.Second" />
+            <RelativeLayout
+                android:id="@+id/descriptionDivider"
+                android:layout_below="@id/countersContainer"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
+                <TextView
+                    android:id="@+id/descriptionEditText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="@dimen/large_intrinsic_padding"
+                    android:paddingRight="@dimen/large_intrinsic_padding"
+                    android:autoLink="all"
+                    android:layout_marginLeft="@dimen/intrinsic_padding"
+                    android:layout_marginTop="@dimen/intrinsic_padding"
+                    android:layout_marginBottom="@dimen/intrinsic_padding"
+                    android:textAppearance="@style/TextAppearance.Second"
+                    android:textSize="27sp"/>
+
+                <Button
+                    android:id="@+id/translateBtn"
+                    android:layout_width="wrap_content"
+                    android:layout_marginRight="@dimen/intrinsic_padding"
+                    android:layout_marginTop="@dimen/intrinsic_padding"
+                    android:layout_marginBottom="@dimen/intrinsic_padding"
+                    android:layout_height="wrap_content"
+                    android:text="Translate"
+                    android:drawableLeft="@drawable/translate"
+                    android:layout_alignParentRight="true"
+                    android:textAppearance="@style/TextAppearance.Second"
+                    android:contentDescription="TRANSLATE" />
+
+            </RelativeLayout>
 
 
             <TextView
                 android:id="@+id/commentsLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/descriptionEditText"
+                android:layout_below="@+id/descriptionDivider"
                 android:layout_marginBottom="@dimen/intrinsic_padding"
                 android:paddingLeft="@dimen/large_intrinsic_padding"
                 android:paddingRight="@dimen/large_intrinsic_padding"
@@ -135,7 +157,6 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
                     android:visibility="gone"
-                    app:layoutManager="LinearLayoutManager"
                     tools:listitem="@layout/comment_list_item" />
 
                 <ProgressBar
