@@ -17,6 +17,7 @@
 package com.travelous.socialcomponents.main.post.editPost;
 
 import android.content.Intent;
+import android.location.Location;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.view.Menu;
@@ -106,4 +107,6 @@ public class EditPostActivity extends BaseCreatePostActivity<EditPostView, EditP
                 return super.onOptionsItemSelected(item);
         }
     }
+
+
 }

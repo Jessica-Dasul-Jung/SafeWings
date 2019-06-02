@@ -16,16 +16,42 @@
 
 package com.travelous.socialcomponents.main.post.createPost;
 
+import android.Manifest;
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.location.Location;
+import android.location.LocationManager;
+import android.os.Bundle;
+import android.provider.Settings;
 import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.api.GoogleApiClient;
+//import com.google.android.gms.location.LocationListener;
+import com.google.android.gms.location.LocationRequest;
+import com.google.android.gms.location.LocationServices;
 import com.travelous.socialcomponents.R;
 import com.travelous.socialcomponents.main.post.BaseCreatePostActivity;
+import com.travelous.socialcomponents.utils.LogUtil;
+import com.google.android.gms.maps.model.LatLng;
+
+import android.location.LocationListener;
+
 
 public class CreatePostActivity extends BaseCreatePostActivity<CreatePostView, CreatePostPresenter> implements CreatePostView {
     public static final int CREATE_NEW_POST_REQUEST = 11;
+
+
 
     @NonNull
     @Override
@@ -54,4 +80,6 @@ public class CreatePostActivity extends BaseCreatePostActivity<CreatePostView, C
                 return super.onOptionsItemSelected(item);
         }
     }
+
+
 }

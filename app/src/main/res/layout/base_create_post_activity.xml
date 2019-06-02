@@ -68,7 +68,28 @@
                 android:hint="@string/hint_description"
                 android:inputType="textMultiLine" />
 
+
         </android.support.design.widget.TextInputLayout>
+
+        <Button
+            android:id="@+id/getLocation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/input_layout_description"/>
+
+        <TextView
+            android:id="@+id/mLatitudeText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/getLocation"
+            android:textSize="20dp"
+            android:text="Seoul"/>
+
+        <TextView
+            android:id="@+id/mLongitudeText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/mLatitudeText"/>
 
     </RelativeLayout>
 
